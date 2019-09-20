@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+ <div class="card mb-3">
+  <h3 class="card-header bg-dark text-white"> {{post.title}} </h3> <!-- card-header기능을 줌-->
+    <div class="card-body">
+    <p>{{post.text | linebreaksbr | urlize }}</p>
+
+    <p class="card-text">
+      {{ post.created_at}},<b>{{post.category}}</b>
+    </p>
+  </div>
+</div>
+<!--코멘트부분-->
+<p class='bg-dark text-white'><b>*コメント*</b></p>
+
+{% for comment in post.comment_set.all %}
+
+<ul class="list-group mb-3">
+  <li class="list-group-item"> <b>お名前:</b> {{comment.name}}</li>
+  <li class="list-group-item"> <b>内容:</b> {{comment.text | urlize| linebreaksbr}}</li>
+</ul>
+
+{% endfor %}
+
+<!--코멘트 추가버튼-->
+<a class="mb-3 btn btn-dark" href=" {% url 'blog:comment' post.pk %} ">コメント投稿ページ</a>
+
+<form action = {% url 'blog:index' %}>
+<button class="mb-3">戻る</button>
+</form>
+
+
+{% endblock %}

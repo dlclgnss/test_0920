@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<form action="" method='POST' class="mb-3">
+{{form.non_field_errors}}
+{% for field in form %}
+<div class="form-group mb-3">
+    <label for=" {{field.id_for_label}}"> {{field.label_tag}} </label>
+    {{field}}
+    {{field.errors}}
+  </div>
+{% endfor %}
+{% csrf_token %}
+<button type="submit"　class="btn btn-dark mb-3">送信</button>
+</form>
+
+{% endblock %}
+
+
+
+{% comment %} 
+{% block content %}
+<form action="" method="POST">
+{{form.as_p}}
+<button type="submit" class="btn btn-dark mb-3">送信</button> 
+{% csrf_token %}
+</form>
+{% endblock %} 
+⇒여기 내용도 같은 내용으로 나오긴한다.
+{% endcomment %}
