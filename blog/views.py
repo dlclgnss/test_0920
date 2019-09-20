@@ -9,7 +9,7 @@ from .models import Post,Category,Comment
 
 class IndexView(generic.ListView):
     model = Post
-    paginate_by = 2
+    paginate_by = 4
 
     def get_queryset(self):
         queryset = Post.objects.order_by('-created_at')
